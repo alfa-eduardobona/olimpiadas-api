@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+
+  laminas:
+    build:
+      context: .
+    ports:
+     - "8080:80"
+    volumes:
+     - .:/var/www
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: alfa
+      MYSQL_PASSWORD: alfa
+      MYSQL_ROOT_PASSWORD: alfa
+      MYSQL_DATABASE: olimpiadas
+
+  adminer:
+    image: adminer
+    depends_on:
+      - db
+    ports:
+      - 9001:8080
