@@ -7,6 +7,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * TODO corrigir repository posteriormente
  * @ORM\Entity(repositoryClass="\Application\Repository\PostRepository")
  * @ORM\Table(name="pais")
  */
@@ -20,9 +21,20 @@ class Pais
     public $idPais;
 
     /**
-     * @ORM\Column(name="nomePais", type="string", length=100)
+     * @ORM\Column(name="nomePais", type="string", length=80)
      */
     public $nomePais;
+
+    /**
+     * @ORM\Column(name="nomePaisGlobal", type="string", length=80)
+     */
+    public $nomePaisGlobal;
+
+    /**
+     * @ORM\OneToMany(targetEntity="\Application\Entity\Atleta", mappedBy="pais")
+     * @ORM\JoinColumn(name="idAtleta", referencedColumnName="idAtleta")
+     */
+    protected $atletas;
 
     /**
      * @return mixed
@@ -54,5 +66,21 @@ class Pais
     public function setNomePais($nomePais): void
     {
         $this->nomePais = $nomePais;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomePaisGlobal()
+    {
+        return $this->nomePaisGlobal;
+    }
+
+    /**
+     * @param mixed $nomePaisGlobal
+     */
+    public function setNomePaisGlobal($nomePaisGlobal): void
+    {
+        $this->nomePaisGlobal = $nomePaisGlobal;
     }
 }
