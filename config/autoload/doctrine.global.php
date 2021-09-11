@@ -8,6 +8,9 @@ return [
             'orm_default' => [
                 'params' => [
                     'driverClass' => Driver::class,
+
+                    // TODO: usar variável de ambiente
+
                     'host'     => 'db',
                     'port'     => '3306',
                     'user'     => 'root',

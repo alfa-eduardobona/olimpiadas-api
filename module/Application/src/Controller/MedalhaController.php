@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use Application\Pais;
-use Laminas\Mvc\Controller\AbstractActionController;
-use Laminas\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractRestfulController;
 use Laminas\View\Model\JsonModel;
 
-class MedalhaController extends AbstractActionController
+class MedalhaController extends AbstractRestfulController
 {
     public function paisAction()
     {
-        echo 2; exit;
-
         return new JsonModel([
             'nome' => 'Brasil'
         ]);
@@ -22,8 +19,8 @@ class MedalhaController extends AbstractActionController
 
     public function atletaAction()
     {
-        echo 3; exit;
+        return new JsonModel([
 
-        return new JsonModel();
+        ]);
     }
 }
