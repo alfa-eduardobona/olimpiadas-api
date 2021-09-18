@@ -25,8 +25,8 @@ Apenas observação: nesta entidade, salve a url absoluta da imagem para ficar m
 ## Como enviar?
 
 Faça um FORK do meu repositório no github,
-Depois que estiver tudo certo, me envie um email pos@eduardobona.com.br
-Com o link do repositório
+Depois que estiver tudo certo, faça um PULL REQUEST
+Através do Pull Request eu saberei avaliar.
 
 # primeiros passos
 
