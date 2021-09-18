@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application;
 
+use Application\Controller\DoctrineFactory;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -56,7 +57,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
-            Controller\MedalhaController::class => InvokableFactory::class,
+            Controller\MedalhaController::class => DoctrineFactory::class,
         ],
     ],
     'view_manager' => [

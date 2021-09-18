@@ -11,6 +11,7 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        $query = $this->entityManager->getRepository(Post::class);
         return new ViewModel();
     }
 }

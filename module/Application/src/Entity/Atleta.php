@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * TODO corrigir repository posteriormente
- * @ORM\Entity(repositoryClass="\Application\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="\Application\Repository\Atleta")
  * @ORM\Table(name="atleta")
  */
 class Atleta
@@ -21,7 +21,7 @@ class Atleta
     public $idAtleta;
 
     /**
-     * @ORM\Column(name="nomeModalidade", type="string", length=80)
+     * @ORM\Column(name="nomeAtleta", type="string", length=80)
      */
     public $nomeAtleta;
 
