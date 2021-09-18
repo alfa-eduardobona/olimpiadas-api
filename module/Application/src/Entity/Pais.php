@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * TODO corrigir repository posteriormente
- * @ORM\Entity(repositoryClass="\Application\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="\Application\Repository\Pais")
  * @ORM\Table(name="pais")
  */
 class Pais

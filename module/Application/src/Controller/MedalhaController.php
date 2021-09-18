@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use Application\Entity\Atleta;
+use Application\Entity\PageViews;
+use Application\Repository\PageViews as PageviewsRepository;
+use Application\Entity\Pais;
+use Application\Repository\Pais as PaisRepository;
 use Application\Repository\Atleta as AtletaRepository;
-use Application\Pais;
 use Doctrine\ORM\EntityManager;
 use Laminas\Mvc\Controller\AbstractRestfulController;
 use Laminas\View\Model\JsonModel;
@@ -22,28 +25,34 @@ class MedalhaController extends AbstractRestfulController
 
     public function paisAction()
     {
-        return new JsonModel([
-            'nome' => 'Brasil'
-        ]);
+        /**
+         * @var PageviewsRepository $repository
+         */
+        $repository = $this->em->getRepository(PageViews::class);
+        $repository->registrarNovoAcesso('/medalhas/por-pais');
+
+        /**
+         * @var PaisRepository $repository
+         */
+        $repository = $this->em->getRepository(Pais::class);
+        $paises = $repository->selectPaisesComMedalhas();
+        return new JsonModel($paises);
     }
 
     public function atletaAction()
     {
         /**
+         * @var PageviewsRepository $repository
+         */
+        $repository = $this->em->getRepository(PageViews::class);
+        $repository->registrarNovoAcesso('/medalhas/por-atleta');
+
+        /**
          * @var AtletaRepository $repository
          */
         $repository = $this->em->getRepository(Atleta::class);
-//        dump( $repository->findAll());
-//        dump($repository->find(1));
 
-        $r = $repository->selectAtletasComMedalhas();
-        dump($r);
-
-        // criteria
-//        dump($repository->findBy())
-
-        return new JsonModel([
-
-        ]);
+        $atletas = $repository->selectAtletasComMedalhas();
+        return new JsonModel($atletas);
     }
 }
