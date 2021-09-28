@@ -3,6 +3,7 @@
 namespace Application\Repository;
 
 use Application\Entity\AtletaModalidade;
+use Application\Entity\Imagens;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 
@@ -45,7 +46,7 @@ class Atleta extends EntityRepository
          */
         $query = $this->createQueryBuilder('a');
         $sql = <<<SQL
-            a.idAtleta, a.nomeAtleta,
+            a.idAtleta, a.nomeAtleta, i.urlImagem,
             sum(case when at.nuPosicao = 1 then 1 else 0 end) as nuOuro,
             sum(case when at.nuPosicao = 2 then 1 else 0 end) as nuPrata,
             sum(case when at.nuPosicao = 3 then 1 else 0 end) as nuBronze,
@@ -54,6 +55,7 @@ class Atleta extends EntityRepository
 SQL;
         $query->select($sql);
 
+        $query->innerJoin(Imagens::class, 'i', Join::WITH, 'a.idImagem=i.idImagem');
         $query->innerJoin(AtletaModalidade::class, 'at', Join::WITH, 'a.idAtleta=at.atleta');
         $query->where('at.nuPosicao <= 3');
         $query->groupBy('a.idAtleta');
