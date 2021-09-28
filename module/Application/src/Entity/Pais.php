@@ -37,6 +37,12 @@ class Pais
     protected $atletas;
 
     /**
+     * @ORM\OneToOne(targetEntity="Application\Entity\Bandeiras", mappedBy="pais")
+     * @ORM\JoinColumn(name="idBandeira", referencedColumnName="idBandeira")
+     */
+    private  $idBandeira;
+
+    /**
      * @return mixed
      */
     public function getIdPais()
@@ -82,5 +88,21 @@ class Pais
     public function setNomePaisGlobal($nomePaisGlobal): void
     {
         $this->nomePaisGlobal = $nomePaisGlobal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdBandeira()
+    {
+        return $this->idBandeira;
+    }
+
+    /**
+     * @param mixed $idBandeira
+     */
+    public function setIdBandeira($idBandeira): void
+    {
+        $this->idBandeira = $idBandeira;
     }
 }
