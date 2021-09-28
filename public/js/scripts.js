@@ -8,7 +8,7 @@ const Index = (() => {
             const option = `
             <tr>
                 <td>
-                    <img class="mr-2" src="${data.urlBandeira}">
+                    <img class="mr-2" src="${data.urlBandeira}" width="40" height="28">
                     ${data.nomePais}
                 </td>
                 <td>${data.nuOuro}</td>
