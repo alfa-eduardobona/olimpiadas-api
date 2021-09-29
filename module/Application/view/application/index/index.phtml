@@ -1,2 +1,68 @@
-CRIAR DIAGRAMAÇÃO AQUI PARA DUAS COLUNAS COM DUAS TABELAS
-UMA EM CADA COLUNA
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+
+</head>
+
+<body>
+    <h1 style="text-align: center; margin-bottom:2rem;">Olimpiadas</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">País</th>
+                        <th scope="col">Ouro</th>
+                        <th scope="col">Prata</th>
+                        <th scope="col">bronze</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($paises as $pais) : ?>
+                    <tr>
+                        <td> <img class="mr-2" style="width: 4rem;" src = <?= $this->escapeHtml($pais->urlImagem)?>> <?= $this->escapeHtml($pais->nomePais)?> </td>
+                        <td><?= $this->escapeHtml($pais->nuOuro)?> </td>
+                        <td><?= $this->escapeHtml($pais->nuPrata)?> </td>
+                        <td><?= $this->escapeHtml($pais->nuBronze)?> </td>
+                        <td><?= $this->escapeHtml($pais->nuMedalhas)?> </td>
+                       
+                    </tr>
+                   <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped table-hover">
+            <thead>
+                    <tr>
+                        <th scope="col">Atleta</th>
+                        <th scope="col">Ouro</th>
+                        <th scope="col">Prata</th>
+                        <th scope="col">bronze</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($atletas as $atleta) : ?>
+                    <tr>
+                        <td scope="col">  <img class="mr-1" style="width: 4rem;" src = <?= $this->escapeHtml($atleta->urlImagem)?>> <?= $this->escapeHtml($atleta->nomeAtleta)?> </td>
+                        <td scope="col"><?= $this->escapeHtml($atleta->nuOuro)?> </td>
+                        <td scope="col"><?= $this->escapeHtml($atleta->nuPrata)?> </td>
+                        <td scope="col"><?= $this->escapeHtml($atleta->nuBronze)?> </td>
+                        <td scope="col"><?= $this->escapeHtml($atleta->nuMedalhas)?> </td>
+                       
+                    </tr>
+                   <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   </body>
+
+</html>
