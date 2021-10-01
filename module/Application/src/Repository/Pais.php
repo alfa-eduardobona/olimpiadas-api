@@ -4,6 +4,7 @@ namespace Application\Repository;
 
 use Application\Entity\AtletaModalidade;
 use Application\Entity\Atleta;
+use Application\Entity\ImagensBandeiras;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 

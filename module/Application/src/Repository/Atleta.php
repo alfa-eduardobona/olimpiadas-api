@@ -3,6 +3,7 @@
 namespace Application\Repository;
 
 use Application\Entity\AtletaModalidade;
+use Application\Entity\ImagensAtletas;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 
