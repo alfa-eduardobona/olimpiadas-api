@@ -45,7 +45,7 @@ class Atleta extends EntityRepository
          */
         $query = $this->createQueryBuilder('a');
         $sql = <<<SQL
-            a.idAtleta, a.nomeAtleta,
+            a.idAtleta, a.nomeAtleta, ia.urlImagemAtleta,
             sum(case when at.nuPosicao = 1 then 1 else 0 end) as nuOuro,
             sum(case when at.nuPosicao = 2 then 1 else 0 end) as nuPrata,
             sum(case when at.nuPosicao = 3 then 1 else 0 end) as nuBronze,
@@ -55,6 +55,7 @@ SQL;
         $query->select($sql);
 
         $query->innerJoin(AtletaModalidade::class, 'at', Join::WITH, 'a.idAtleta=at.atleta');
+        $query->innerJoin(ImagensAtletas::class, 'ia', Join::WITH, 'a.idImagemAtleta=ia.idImagemAtleta');
         $query->where('at.nuPosicao <= 3');
         $query->groupBy('a.idAtleta');
 
