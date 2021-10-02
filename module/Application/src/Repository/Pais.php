@@ -4,6 +4,7 @@ namespace Application\Repository;
 
 use Application\Entity\AtletaModalidade;
 use Application\Entity\Atleta;
+use Application\Entity\ImgBandeira;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 
@@ -13,7 +14,7 @@ class Pais extends EntityRepository
     {
         $query = $this->createQueryBuilder('p');
         $sql = <<<SQL
-            p.idPais, p.nomePais,
+            p.idPais, p.nomePais, img.urlBandeira,
             sum(case when at.nuPosicao = 1 then 1 else 0 end) as nuOuro,
             sum(case when at.nuPosicao = 2 then 1 else 0 end) as nuPrata,
             sum(case when at.nuPosicao = 3 then 1 else 0 end) as nuBronze,
@@ -24,6 +25,7 @@ SQL;
 
         $query->innerJoin(Atleta::class, 'a', Join::WITH, 'p.idPais=a.pais');
         $query->innerJoin(AtletaModalidade::class, 'at', Join::WITH, 'a.idAtleta=at.atleta');
+        $query->innerJoin(ImgBandeira::class, 'img', Join::WITH, 'p.idImgBandeira=img.idImgBandeira');
         $query->where('at.nuPosicao <= 3');
         $query->groupBy('p.idPais');
 
