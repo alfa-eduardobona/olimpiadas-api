@@ -37,6 +37,12 @@ class Pais
     protected $atletas;
 
     /**
+     * @ORM\ManyToOne(targetEntity="\Application\Entity\ImgBandeira", inversedBy="pais")
+     * @ORM\JoinColumn(name="idImgBandeira", referencedColumnName="idImgBandeira")
+     */
+    protected $idImgBandeira;
+
+    /**
      * @return mixed
      */
     public function getIdPais()
@@ -82,5 +88,21 @@ class Pais
     public function setNomePaisGlobal($nomePaisGlobal): void
     {
         $this->nomePaisGlobal = $nomePaisGlobal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdImgBandeira()
+    {
+        return $this->idImgBandeira;
+    }
+
+    /**
+     * @param mixed $idImgBandeira
+     */
+    public function setIdImgBandeira($idImgBandeira): void
+    {
+        $this->idImgBandeira = $idImgBandeira;
     }
 }
