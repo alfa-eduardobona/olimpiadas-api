@@ -25,8 +25,8 @@ class PageViews
     public $dataAcesso;
 
     /**
-    * @ORM\Column(name="url", type="string")
-    */
+     * @ORM\Column(name="url", type="string")
+     */
     public $url;
 
     /**
