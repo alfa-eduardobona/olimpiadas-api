@@ -22,7 +22,7 @@ class Pageviews extends EntityRepository
     public function atualizarAcesso($id, $url)
     {
         $pageview = $this->find($id);
-        if (! $pageview instanceof PageViewsEntity) {
+        if (!$pageview instanceof PageViewsEntity) {
             throw new \Exception('Objeto não encontrado', 2001);
         }
         $pageview->setUrl($url);

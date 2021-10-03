@@ -1,6 +1,6 @@
 <?php
 
-use \Doctrine\DBAL\Driver\PDO\Mysql\Driver;
+use \Doctrine\DBAL\Driver\PDO\MySQL\Driver;
 
 return [
     'doctrine' => [
