@@ -31,10 +31,21 @@ class Pais
     public $nomePaisGlobal;
 
     /**
+     * @ORM\Column(name="idImagemBandeira", type="integer")
+     */
+    public $idImagemBandeira;
+
+    /**
      * @ORM\OneToMany(targetEntity="\Application\Entity\Atleta", mappedBy="pais")
      * @ORM\JoinColumn(name="idAtleta", referencedColumnName="idAtleta")
      */
     protected $atletas;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Entity\Imagem", mappedBy="imagem")
+     * @ORM\JoinColumn(name="idImagemBandeira", referencedColumnName="idImagem")
+     */
+    protected $imagemBandeira;
 
     /**
      * @return mixed
@@ -82,5 +93,21 @@ class Pais
     public function setNomePaisGlobal($nomePaisGlobal): void
     {
         $this->nomePaisGlobal = $nomePaisGlobal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdImagemBandeira()
+    {
+        return $this->idImagemBandeira;
+    }
+
+    /**
+     * @param mixed $idImagemBandeira
+     */
+    public function setIdImagemBandeira($idImagemBandeira): void
+    {
+        $this->idImagemBandeira = $idImagemBandeira;
     }
 }

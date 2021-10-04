@@ -55,5 +55,6 @@ php ./vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
 php ./vendor/doctrine/doctrine-module/bin/doctrine-module
 php ./vendor/doctrine/doctrine-module/bin/doctrine-module
 ```
-
+# Layout final após concluído
+<img alt="layout" src="/public/img/index.png" />
 

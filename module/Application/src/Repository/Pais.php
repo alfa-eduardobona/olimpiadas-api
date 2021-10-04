@@ -4,6 +4,7 @@ namespace Application\Repository;
 
 use Application\Entity\AtletaModalidade;
 use Application\Entity\Atleta;
+use Application\Entity\Imagem;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 
@@ -13,7 +14,7 @@ class Pais extends EntityRepository
     {
         $query = $this->createQueryBuilder('p');
         $sql = <<<SQL
-            p.idPais, p.nomePais,
+            p.idPais, p.nomePais, i.url,
             sum(case when at.nuPosicao = 1 then 1 else 0 end) as nuOuro,
             sum(case when at.nuPosicao = 2 then 1 else 0 end) as nuPrata,
             sum(case when at.nuPosicao = 3 then 1 else 0 end) as nuBronze,
@@ -22,6 +23,7 @@ class Pais extends EntityRepository
 SQL;
         $query->select($sql);
 
+        $query->innerJoin(Imagem::class, 'i', Join::WITH, 'p.idImagemBandeira=i.idImagem');
         $query->innerJoin(Atleta::class, 'a', Join::WITH, 'p.idPais=a.pais');
         $query->innerJoin(AtletaModalidade::class, 'at', Join::WITH, 'a.idAtleta=at.atleta');
         $query->where('at.nuPosicao <= 3');
@@ -33,7 +35,7 @@ SQL;
         $query->addOrderBy('nuMedalhas', 'DESC');
 
         $results = $query->getQuery()->getResult();
-        $results = array_map(function($atleta){
+        $results = array_map(function ($atleta) {
             $atleta['nuOuro'] = (int) $atleta['nuOuro'];
             $atleta['nuPrata'] = (int) $atleta['nuPrata'];
             $atleta['nuBronze'] = (int) $atleta['nuBronze'];
