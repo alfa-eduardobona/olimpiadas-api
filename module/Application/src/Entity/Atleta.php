@@ -26,10 +26,21 @@ class Atleta
     public $nomeAtleta;
 
     /**
+     * @ORM\Column(name="idImagemAtleta", type="integer")
+     */
+    public $idImagemAtleta;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Application\Entity\Pais", inversedBy="atletas")
      * @ORM\JoinColumn(name="idPais", referencedColumnName="idPais")
      */
     protected $pais;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Entity\Imagem", mappedBy="imagem")
+     * @ORM\JoinColumn(name="idImagemAtleta", referencedColumnName="idImagem")
+     */
+    protected $imagemAtleta;
 
     /**
      * @return mixed
@@ -61,6 +72,22 @@ class Atleta
     public function setNomeAtleta($nomeAtleta): void
     {
         $this->nomeAtleta = $nomeAtleta;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdImagemAtleta()
+    {
+        return $this->idImagemAtleta;
+    }
+
+    /**
+     * @param mixed $idImagemAtleta
+     */
+    public function setIdImagemAtleta($idImagemAtleta): void
+    {
+        $this->idImagemAtleta = $idImagemAtleta;
     }
 
     /**
