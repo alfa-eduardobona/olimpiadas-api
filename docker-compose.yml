@@ -9,19 +9,27 @@ services:
      - "8080:80"
     volumes:
      - .:/var/www
-
+    environment:
+      DB_ADAPTER: ${DB_ADAPTER}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_CHARSET: ${DB_CHARSET}
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - 3306:3306
+      - "3306:3306"
 #    volumes:
 #      - mysql_data:/var/lib/mysql
     environment:
-      MYSQL_USER: alfa
-      MYSQL_PASSWORD: alfa
-      MYSQL_ROOT_PASSWORD: alfa
-      MYSQL_DATABASE: olimpiadas
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+
 
   adminer:
     image: adminer
