@@ -1,6 +1,6 @@
 <?php
 
-use \Doctrine\DBAL\Driver\PDO\Mysql\Driver;
+use \Doctrine\DBAL\Driver\PDO\MySQL\Driver;
 
 return [
     'doctrine' => [
@@ -8,14 +8,11 @@ return [
             'orm_default' => [
                 'params' => [
                     'driverClass' => Driver::class,
-
-                    // TODO: usar variável de ambiente
-
-                    'host'     => 'db',
-                    'port'     => '3306',
-                    'user'     => 'root',
-                    'password' =>  'alfa',
-                    'dbname'   => 'olimpiadas',
+                    'host'     => getenv('DB_HOST'),
+                    'port'     => getenv('DB_PORT'),
+                    'user'     => getenv('DB_USER'),
+                    'password' => getenv('DB_PASSWORD'),
+                    'dbname'   => getenv('DB_DATABASE'),
                 ],
             ],
         ],

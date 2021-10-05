@@ -7,7 +7,6 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TODO corrigir repository posteriormente
  * @ORM\Entity(repositoryClass="\Application\Repository\Atleta")
  * @ORM\Table(name="atleta")
  */
@@ -30,6 +29,12 @@ class Atleta
      * @ORM\JoinColumn(name="idPais", referencedColumnName="idPais")
      */
     protected $pais;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Entity\ImagemAtleta", inversedBy="atletas")
+     * @ORM\JoinColumn(name="idImageAtleta", referencedColumnName="idImageAtleta")
+     */
+    protected $idImageAtleta;
 
     /**
      * @return mixed
@@ -78,4 +83,22 @@ class Atleta
     {
         $this->pais = $pais;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdImageAtleta()
+    {
+        return $this->idImageAtleta;
+    }
+
+    /**
+     * @param mixed $idImageAtleta
+     */
+    public function setIdImageAtleta($idImageAtleta): void
+    {
+        $this->idImageAtleta = $idImageAtleta;
+    }
+
+
 }

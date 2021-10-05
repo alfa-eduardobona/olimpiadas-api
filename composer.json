@@ -15,7 +15,9 @@
         "laminas/laminas-development-mode": "^3.2",
         "laminas/laminas-skeleton-installer": "^0.3",
         "laminas/laminas-mvc": "^3.1.1",
-        "doctrine/doctrine-orm-module": "^4.0"
+        "doctrine/doctrine-orm-module": "^4.0",
+        "robmorgan/phinx": "^0.12.8",
+        "fakerphp/faker": "^1.16"
     },
     "autoload": {
         "psr-4": {
@@ -41,7 +43,10 @@
         ],
         "serve": "php -S 0.0.0.0:8080 -t public",
         "test": "vendor/bin/phpunit",
-        "static-analysis": "vendor/bin/psalm --shepherd --stats"
+        "static-analysis": "vendor/bin/psalm --shepherd --stats",
+        "doctrine-update": "./vendor/bin/doctrine-module orm:schema-tool:update --force",
+        "create-seed": "./vendor/bin/phinx seed:create",
+        "seed-run": "./vendor/bin/phinx seed:run"
     },
     "scripts-descriptions": {
         "cs-check": "Run coding standards checks.",
