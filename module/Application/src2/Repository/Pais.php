@@ -3,17 +3,18 @@
 namespace Application\Repository;
 
 use Application\Entity\AtletaModalidade;
-use Application\Entity\ImagemAtleta;
+use Application\Entity\Atleta;
+use Application\Entity\ImagemBandeira;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 
-class Atleta extends EntityRepository
+class Pais extends EntityRepository
 {
-    public function selectAtletasComMedalhas()
+    public function selectPaisesComMedalhas()
     {
-        $query = $this->createQueryBuilder('a');
+        $query = $this->createQueryBuilder('p');
         $sql = <<<SQL
-            a.idAtleta, a.nomeAtleta, img.urlImageAtleta,
+            p.idPais, p.nomePais, img.urlImageBandeira,
             sum(case when at.nuPosicao = 1 then 1 else 0 end) as nuOuro,
             sum(case when at.nuPosicao = 2 then 1 else 0 end) as nuPrata,
             sum(case when at.nuPosicao = 3 then 1 else 0 end) as nuBronze,
@@ -22,10 +23,19 @@ class Atleta extends EntityRepository
         SQL;
 
         $query->select($sql);
-        $query->innerJoin(AtletaModalidade::class, 'at', Join::WITH, 'a.idAtleta=at.atleta');
-        $query->leftJoin(ImagemAtleta::class, 'img', Join::WITH, 'a.idImageAtleta=img.idImageAtleta');
+        $query->innerJoin(Atleta::class, 'a', Join::WITH, 'p.idPais=a.pais');
+        $query->innerJoin(
+            AtletaModalidade::class,
+            'at', Join::WITH,
+            'a.idAtleta=at.atleta'
+        );
+        $query->leftJoin(
+            ImagemBandeira::class,
+            'img', Join::WITH,
+            'p.idImageBandeira=img.idImageBandeira'
+        );
         $query->where('at.nuPosicao <= 3');
-        $query->groupBy('a.idAtleta');
+        $query->groupBy('p.idPais');
         $query->orderBy('nuOuro', 'DESC');
         $query->addOrderBy('nuPrata', 'DESC');
         $query->addOrderBy('nuBronze', 'DESC');

@@ -1,0 +1,3 @@
+docker-compose exec laminas bash
+docker-compose up -d
+composer development-enable 
