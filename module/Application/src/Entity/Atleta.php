@@ -31,6 +31,12 @@ class Atleta
      */
     protected $pais;
 
+     /**
+     * @ORM\OneToOne(targetEntity="Application\Entity\Imagens", mappedBy="atletas")
+     * @ORM\JoinColumn(name="idImagem", referencedColumnName="idImagem")
+     */
+    private  $idImagem;
+
     /**
      * @return mixed
      */
@@ -77,5 +83,21 @@ class Atleta
     public function setPais($pais): void
     {
         $this->pais = $pais;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdImagem()
+    {
+        return $this->idImagem;
+    }
+
+    /**
+     * @param mixed $idImagem
+     */
+    public function setIdImagem($idImagem): void
+    {
+        $this->idImagem = $idImagem;
     }
 }

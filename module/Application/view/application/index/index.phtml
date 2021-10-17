@@ -1,2 +1,163 @@
 CRIAR DIAGRAMAÇÃO AQUI PARA DUAS COLUNAS COM DUAS TABELAS
 UMA EM CADA COLUNA
+<html>
+
+<body>
+
+    <div class="row">
+        <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">Paises</div>
+            <div class="card-body">
+                <table id="tabelaPaises" class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Imagem</th>
+                            <th>País</th>
+                            <th>Ouro</th>
+                            <th>Prata</th>
+                            <th>Bronze</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        </div>
+        
+
+        <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">Atletas</div>
+            <div class="card-body">
+                <table id="tabelaAtletas" class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Atletas</th>
+                            <th>Ouro</th>
+                            <th>Prata</th>
+                            <th>Bronze</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // JSON - objeto
+        function fazGet(url) {
+            let request = new XMLHttpRequest()
+            request.open("GET", url, false)
+            request.send()
+            return request.responseText
+        }
+
+        function criarLinhaPais(pais) {
+            console.log(pais)
+            linha = document.createElement("tr");
+            tdBandeira = document.createElement("td");
+            tdPais = document.createElement("td");
+            tdOuro = document.createElement("td");
+            tdPrata = document.createElement("td");
+            tdBronze = document.createElement("td");
+            tdMedalhas = document.createElement("td");
+        
+            let imgBandeira = document.createElement('img');
+            imgBandeira.src = pais.urlImagem;
+            imgBandeira.width = 40;
+            imgBandeira.height = 25;
+            
+            tdBandeira.appendChild(imgBandeira);
+            tdPais.innerHTML = pais.nomePais;
+            tdOuro.innerHTML = pais.nuOuro;
+            tdPrata.innerHTML = pais.nuPrata;
+            tdBronze.innerHTML = pais.nuBronze;
+            tdMedalhas.innerHTML = pais.nuMedalhas;
+            
+
+            linha.appendChild(tdBandeira);
+            linha.appendChild(tdPais);
+            linha.appendChild(tdOuro);
+            linha.appendChild(tdPrata);
+            linha.appendChild(tdBronze);
+            linha.appendChild(tdMedalhas);
+
+
+            return linha;
+
+        }
+
+        function criarLinhaAtleta(atleta) {
+            console.log(atleta)
+
+
+            linhaAtleta = document.createElement("tr");
+            tdFoto = document.createElement("td");
+            tdAtleta = document.createElement("td");
+            tdAtletaOuro = document.createElement("td");
+            tdAtletaPrata = document.createElement("td");
+            tdAtletaBronze = document.createElement("td");
+            tdAtletaMedalhas = document.createElement("td");
+
+
+            let imgAtleta = document.createElement('img');
+            imgAtleta.src = atleta.urlImagem;
+            imgAtleta.width = 40;
+            imgAtleta.height = 25;
+
+            tdFoto.appendChild(imgAtleta);
+            tdAtleta.innerHTML = atleta.nomeAtleta;
+            tdAtletaOuro.innerHTML = atleta.nuOuro;
+            tdAtletaPrata.innerHTML = atleta.nuPrata;
+            tdAtletaBronze.innerHTML = atleta.nuBronze;
+            tdAtletaMedalhas.innerHTML = atleta.nuMedalhas;
+
+
+            linhaAtleta.appendChild(tdFoto);
+            linhaAtleta.appendChild(tdAtleta);
+            linhaAtleta.appendChild(tdAtletaOuro);
+            linhaAtleta.appendChild(tdAtletaPrata);
+            linhaAtleta.appendChild(tdAtletaBronze);
+            linhaAtleta.appendChild(tdAtletaMedalhas);
+
+
+            return linhaAtleta;
+
+        }
+
+        function main() {
+
+            console.log(fazGet("http://localhost:8080/medalhas/por-pais"))
+            console.log(fazGet("http://localhost:8080/medalhas/por-atleta"))
+
+            let pais = fazGet("http://localhost:8080/medalhas/por-pais");
+            let atleta = fazGet("http://localhost:8080/medalhas/por-atleta");
+            let paises = JSON.parse(pais);
+            let atletas = JSON.parse(atleta);
+            let tabelaPais = document.getElementById("tabelaPaises");
+            let tabelaAtleta = document.getElementById("tabelaAtletas");
+
+            paises.forEach(element => {
+                let linha = criarLinhaPais(element);
+                tabelaPais.appendChild(linha);
+            });
+
+            atletas.forEach(element => {
+                let linha = criarLinhaAtleta(element);
+                tabelaAtleta.appendChild(linha);
+            });
+            //para cada usuario
+            //criar uma linha
+            // adicionar na tabela
+        }
+
+        main()
+    </script>
+</body>
+
+</html>
