@@ -1,2 +1,88 @@
-CRIAR DIAGRAMAÇÃO AQUI PARA DUAS COLUNAS COM DUAS TABELAS
-UMA EM CADA COLUNA
+<style>
+
+#container2 {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+th, td {
+    border: 1px solid red;
+}
+
+img {
+height: 36px;
+aspect-ratio: auto 36 / 36;
+width: 36px;
+border-radius: 50%;
+box-sizing: border-box;
+}
+
+</style>
+
+<div id="container2">
+
+<table id="dadosPorAtleta">
+    <tr>
+        <th></th>
+        <th>Nome atleta</th>
+        <th>Ouro</th>
+        <th>Prata</th>
+        <th>Bronze</th>
+        <th>Qtd.</th>
+    </tr>
+
+</table>
+
+<table id="dadosPorPais">
+    <tr>
+        <th></th>
+        <th>Nome país</th>
+        <th>Ouro</th>
+        <th>Prata</th>
+        <th>Bronze</th>
+        <th>Qtd.</th>
+    </tr>
+
+</table>
+
+</div>
+
+<script>
+
+var urlFotos = '<?= $this->basePath() . '/img/atletas/'?>'
+
+var urlFotos2 = '<?= $this->basePath() . '/img/paises/'?>'
+
+$(document).ready(function(){
+
+    $.get("http://localhost:8080/medalhas/por-atleta", function(data, status){
+
+        for(let i = 0; i < data.length; i = i + 1 ) {
+            var linha = '<tr><td><img src="'+urlFotos+data[i].urlFotoAtleta+'" /></td>';
+            linha = linha + '<td>'+data[i].nomeAtleta+'</td>';
+            linha = linha + '<td>'+data[i].nuOuro+'</td>';
+            linha = linha + '<td>'+data[i].nuPrata+'</td>';
+            linha = linha + '<td>'+data[i].nuBronze+'</td>';
+            linha = linha + '<td>'+data[i].nuMedalhas+'</td>';
+            $("#dadosPorAtleta").append(linha);
+        }
+
+    });
+
+    $.get("http://localhost:8080/medalhas/por-pais", function(data, status){
+
+        for(let i = 0; i < data.length; i = i + 1 ) {
+        var linha = '<tr><td><img src="'+urlFotos2+data[i].urlImgBandeira+'" /></td>';
+        linha = linha + '<td>'+data[i].nomePais+'</td>';
+        linha = linha + '<td>'+data[i].nuOuro+'</td>';
+        linha = linha + '<td>'+data[i].nuPrata+'</td>';
+        linha = linha + '<td>'+data[i].nuBronze+'</td>';
+        linha = linha + '<td>'+data[i].nuMedalhas+'</td>';
+        $("#dadosPorPais").append(linha);
+        }
+
+    });
+
+});
+</script>

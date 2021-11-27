@@ -50,7 +50,7 @@ class Atleta extends EntityRepository
             sum(case when at.nuPosicao = 2 then 1 else 0 end) as nuPrata,
             sum(case when at.nuPosicao = 3 then 1 else 0 end) as nuBronze,
 
-            count(a) as nuMedalhas
+            count(a) as nuMedalhas, a.urlFotoAtleta
 SQL;
         $query->select($sql);
 

@@ -32,6 +32,11 @@ class Atleta
     protected $pais;
 
     /**
+     * @ORM\Column(name="urlFotoAtleta", type="string", length=200)
+     */
+    public $urlFotoAtleta;
+
+    /**
      * @return mixed
      */
     public function getIdAtleta()
@@ -77,5 +82,21 @@ class Atleta
     public function setPais($pais): void
     {
         $this->pais = $pais;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrlFotoAtleta()
+    {
+        return $this->urlFotoAtleta;
+    }
+
+    /**
+     * @param mixed $urlFotoAtleta
+     */
+    public function setUrlFotoAtleta($urlFotoAtleta): void
+    {
+        $this->urlFotoAtleta = $urlFotoAtleta;
     }
 }

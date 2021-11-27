@@ -13,7 +13,7 @@ class Pais extends EntityRepository
     {
         $query = $this->createQueryBuilder('p');
         $sql = <<<SQL
-            p.idPais, p.nomePais,
+            p.idPais, p.nomePais, p.urlImgBandeira,
             sum(case when at.nuPosicao = 1 then 1 else 0 end) as nuOuro,
             sum(case when at.nuPosicao = 2 then 1 else 0 end) as nuPrata,
             sum(case when at.nuPosicao = 3 then 1 else 0 end) as nuBronze,

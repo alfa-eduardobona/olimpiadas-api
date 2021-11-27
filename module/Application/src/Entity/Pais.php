@@ -37,6 +37,11 @@ class Pais
     protected $atletas;
 
     /**
+     * @ORM\Column(name="urlImgBandeira", type="string", length=200)
+     */
+    public $urlImgBandeira;
+
+    /**
      * @return mixed
      */
     public function getIdPais()
@@ -82,5 +87,21 @@ class Pais
     public function setNomePaisGlobal($nomePaisGlobal): void
     {
         $this->nomePaisGlobal = $nomePaisGlobal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrlImgBandeira()
+    {
+        return $this->urlImgBandeira;
+    }
+
+    /**
+     * @param mixed $urlImgBandeira
+     */
+    public function setUrlImgBandeira($urlImgBandeira): void
+    {
+        $this->urlImgBandeira = $urlImgBandeira;
     }
 }
