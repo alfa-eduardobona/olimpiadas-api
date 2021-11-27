@@ -22,6 +22,7 @@ class IndexController extends AbstractActionController
         // por meio de http request em localhost:8080/medalhas/por-pais
         // e envia para a view os dados do JSON
 
+        $this->layout('layout/layoutApi');
         return new ViewModel();
     }
 }
